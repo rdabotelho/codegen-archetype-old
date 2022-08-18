@@ -1,11 +1,11 @@
 template {
-	sourceFile: 'repository.ts'
-	targetFile: 'src/repository/${domain.name}Repository.ts'
+	sourceFile: 'service.ts'
+	targetFile: 'src/service/${domain.name}Service.ts'
 	consider: 'entity'
-	block(3, 3) {
+	block(1, 2) {
 		replace('DomainName', domain.name)
 	}
-	block(6, 28) {
+	block(6, 31) {
 		replace('DomainName', domain.name)
 		replace('domainName', domain.name.lowerCase)
 	}

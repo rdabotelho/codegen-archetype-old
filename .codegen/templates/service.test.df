@@ -1,0 +1,16 @@
+template {
+	sourceFile: 'service.test.ts'
+	targetFile: 'tests/unit/service/${domain.name.lowerCase}.service.test.ts'
+	consider: 'entity'
+	block(1, 3) {
+		replace('DomainName', domain.name)
+	}
+	block(5, 16) {
+		replace('DomainName', domain.name)
+		replace('domainName', domain.name.lowerCase)
+	}
+	block(18, 77) {
+		replace('DomainName', domain.name)
+		replace('domainName', domain.name.lowerCase)
+	}
+}

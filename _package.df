@@ -1,0 +1,7 @@
+template {
+	sourceFile: 'package.json'
+	targetFile: 'package.json'
+	block(2, 2) {
+		replace('example', PROJECT_NAME)		
+	}
+}

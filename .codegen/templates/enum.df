@@ -1,22 +1,15 @@
-
 template {
-	sourceFile: 'enum.java'
-	targetFile: '${SOURCE_DIR}/enums/${domain.name}.java'
+	sourceFile: 'enum.ts'
+	targetFile: 'src/enum/${domain.name}.ts'
 	consider: 'enum'
 	block(1, 1) {
-	    replace('com.example.demo', BASE_PACKAGE)
+		replace('DomainName', domain.name)
 	}
-	block(3, 3) {
-		replace('Enumeration', domain.name.pascalCase)
-	}
-	block(5, 5) {
+	block(2, 2) {
 		iterate(domain.attributes, item) {
-			replace('VALUE', item.name.upperCase)
-			replace('Value', item.name.pascalCase)
-			delimiter('', ',', ';')
+            replace('NAME', item.name.upperCase)
+            replace('name', item.name.lowerCase)
+            delimiter('',',','')
 		}
-	}
-	block(9, 9) {
-		replace('Enumeration', domain.name.pascalCase)
 	}
 }

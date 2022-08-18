@@ -1,0 +1,12 @@
+{
+  "express": {
+    "port":8081,
+    "debug":5858
+  },
+  "db": {
+    "host":"localhost",
+    "port":27017,
+    "database":"typescript"
+  },
+  "loglevel":"info"
+}

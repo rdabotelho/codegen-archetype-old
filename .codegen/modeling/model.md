@@ -1,0 +1,3 @@
+entity HelloWorld {
+    string message
+}

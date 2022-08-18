@@ -1,35 +1,95 @@
 template {
-	sourceFile: 'entity.java'
-	targetFile: '${SOURCE_DIR}/model/${domain.name}.java'
+	sourceFile: 'entity.ts'
+	targetFile: 'src/entity/${domain.name}.ts'
 	consider: 'entity'
-	block(1, 1) {
-	    replace('com.example.demo', BASE_PACKAGE)
-	}
 	block(4, 4) {
-	    showIf(domain.attributes.contains, 'type', 'LocalDate')
+		showIf(domain.attributes.contains, 'basic', 'true')
 	}
-	block(5, 5) {
-	    showIf(domain.attributes.contains, 'enum', 'true')
-	    replace('com.example.demo', BASE_PACKAGE)
+	block(5, 6) {
+		showIf(domain.attributes.contains, 'oneToOne', 'true')
+	}
+	block(7, 7) {
+		showIf(domain.attributes.contains, 'manyToOne', 'true')
 	}
 	block(8, 8) {
-		replace('ENTITY', domain.name.upperCase)
+		showIf(domain.attributes.contains, 'manyToMany', 'true')
 	}
-	block(9, 9) {
-		replace('Entity', domain.name.pascalCase)
-	}
-	block(15, 16) {
+	block(11, 11) {
 		iterate(domain.attributes, item) {
-			replace('ATTRIBUTE', item.name.upperCase)
-			replace('String', item.type)
-			replace('attribute', item.name)
+			replace('OtherDomain', item.typeDomain.name) {
+				showIf(item.entity.equals, 'true')
+			}
 		}
 	}
-	block(25, 32) {
+	block(12, 12) {
 		iterate(domain.attributes, item) {
-			replace('String', item.type)
-			replace('Attribute', item.name.pascalCase)
-			replace('attribute', item.name)
+			replace('EnumName', item.typeDomain.name) {
+				showIf(item.enum.equals, 'true')
+			}
+		}
+	}
+	block(14, 15) {
+		replace('domain_name', domain.name.snakeLowerCase)		
+		replace('DomainName', domain.name)
+	}
+	block(17, 17) {
+		replace('domain_name', domain.name.snakeLowerCase)		
+	}
+
+	block(19, 34) {
+		iterate(domain.attributes, item) {
+			case(19, 21, item.basic.equals, 'true') {
+				replace('column_name', item.name.snakeLowerCase)
+				replace('attributeName', item.name)
+				replace('string', item.type)
+				replaceIf('\/\* column_length \*\/', item.length, item.length.notEquals, '', '') {
+					mask(', length:%s')
+				}
+				replaceIf('\/\* column_required \*\/', ', nullable:false', item.required.equals, 'true', '')
+				replace('\/\* column_enum \*\/', '')
+			}
+			case(19, 21, item.enum.equals, 'true') {
+				replace('column_name', item.name.snakeLowerCase)
+				replace('attributeName', item.name)
+				replace('string', item.type)
+				replaceIf('\/\* column_length \*\/', item.length, item.length.notEquals, '', '') {
+					mask(', length:%s')
+				}
+				replaceIf('\/\* column_required \*\/', ', nullable:false', item.required.equals, 'true', '')
+				replace('\/\* column_enum \*\/', item.type) {
+					mask(', type: "enum", enum: %s')
+				}
+			}
+			case(22, 25, item.oneToOne.equals, 'true') {
+				replace('attributeName', item.name)
+				replace('OtherDomain', item.type)
+				replace('TypeDomain', item.typeDomain.name)
+			}
+			case(26, 28, item.oneToMany.equals, 'true') {
+				replace('attributeName', item.name)
+				replace('OtherDomain', item.typeDomain.name)
+				replace('TypeDomain', item.typeDomain.name)
+				replace('typeDomain', item.typeDomain.name.camelCase)
+				replace('domain', domain.name.camelCase)
+			}
+			case(29, 31, item.manyToOne, 'true') {
+				replace('attributeName', item.name)
+				replace('OtherDomain', item.typeDomain.name)
+				replace('TypeDomain', item.typeDomain.name)
+				replace('typeDomain', item.typeDomain.name.camelCase)
+				replace('domains', domain.name.camelCase) {
+					mask('%ss')
+				}
+			}
+			case(32, 34, item.manyToMany, 'true') {
+				replace('attributeName', item.name)
+				replace('OtherDomain', item.typeDomain.name)
+				replace('TypeDomain', item.typeDomain.name)
+				replace('typeDomain', item.typeDomain.name.camelCase)
+				replace('domains', domain.name.camelCase) {
+					mask('%ss')
+				}
+			}
 		}
 	}
 }

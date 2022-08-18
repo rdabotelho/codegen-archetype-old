@@ -1,0 +1,7 @@
+template {
+	sourceFile: 'README.md'
+	targetFile: 'README.md'
+	block(1, 1) {
+		replace('example', PROJECT_NAME)		
+	}
+}
