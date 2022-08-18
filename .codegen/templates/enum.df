@@ -1,0 +1,22 @@
+
+template {
+	sourceFile: 'enum.java'
+	targetFile: '${SOURCE_DIR}/enums/${domain.name}.java'
+	consider: 'enum'
+	block(1, 1) {
+	    replace('com.example.demo', BASE_PACKAGE)
+	}
+	block(3, 3) {
+		replace('Enumeration', domain.name.pascalCase)
+	}
+	block(5, 5) {
+		iterate(domain.attributes, item) {
+			replace('VALUE', item.name.upperCase)
+			replace('Value', item.name.pascalCase)
+			delimiter('', ',', ';')
+		}
+	}
+	block(9, 9) {
+		replace('Enumeration', domain.name.pascalCase)
+	}
+}

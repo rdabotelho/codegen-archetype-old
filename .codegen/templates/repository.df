@@ -1,0 +1,11 @@
+template {
+	sourceFile: 'repository.java'
+	targetFile: '${SOURCE_DIR}/repository/${domain.name}Repository.java'
+	consider: 'entity'
+	block(1, 5) {
+	    replace('com.example.demo', BASE_PACKAGE)
+	}
+	block(8, 8) {
+		replace('Entity', domain.name.pascalCase)
+	}
+}

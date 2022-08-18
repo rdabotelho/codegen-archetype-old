@@ -1,0 +1,35 @@
+template {
+	sourceFile: 'entity.java'
+	targetFile: '${SOURCE_DIR}/model/${domain.name}.java'
+	consider: 'entity'
+	block(1, 1) {
+	    replace('com.example.demo', BASE_PACKAGE)
+	}
+	block(4, 4) {
+	    showIf(domain.attributes.contains, 'type', 'LocalDate')
+	}
+	block(5, 5) {
+	    showIf(domain.attributes.contains, 'enum', 'true')
+	    replace('com.example.demo', BASE_PACKAGE)
+	}
+	block(8, 8) {
+		replace('ENTITY', domain.name.upperCase)
+	}
+	block(9, 9) {
+		replace('Entity', domain.name.pascalCase)
+	}
+	block(15, 16) {
+		iterate(domain.attributes, item) {
+			replace('ATTRIBUTE', item.name.upperCase)
+			replace('String', item.type)
+			replace('attribute', item.name)
+		}
+	}
+	block(25, 32) {
+		iterate(domain.attributes, item) {
+			replace('String', item.type)
+			replace('Attribute', item.name.pascalCase)
+			replace('attribute', item.name)
+		}
+	}
+}

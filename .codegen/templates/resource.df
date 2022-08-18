@@ -1,0 +1,13 @@
+template {
+	sourceFile: 'resource.java'
+	targetFile: '${SOURCE_DIR}/web/rest/${domain.name}Resource.java'
+	consider: 'entity'
+	block(1, 4) {
+	    replace('com.example.demo', BASE_PACKAGE)
+		replace('Model', domain.name.pascalCase)
+	}
+	block(18, 72) {
+		replace('Model', domain.name.pascalCase)
+		replace('model', domain.name.lowerCase)
+	}
+}
