@@ -11,7 +11,7 @@ import {
 import { OtherDomain } from "./OtherDomain"
 import { EnumName } from "../enum/EnumName"
 
-@Entity('domain_name}')
+@Entity('domain_name')
 export class DomainName extends BaseEntity {
 
   @PrimaryGeneratedColumn({name:"id_domain_name"})
