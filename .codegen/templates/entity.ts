@@ -4,6 +4,7 @@ import {
   Column, 
   OneToOne,
   JoinColumn, 
+  OneToMany,
   ManyToOne,
   ManyToMany,
   Entity
@@ -24,7 +25,7 @@ export class DomainName extends BaseEntity {
   @JoinColumn()
   attributeName: OtherDomain
 
-  @OneToMany(() => TypeDomain, (typeDomain) => typeDomain.domain)
+  @OneToMany(() => TypeDomain, (typeDomain: any) => typeDomain.domain)
   attributeName: OtherDomain[]
 
   @ManyToOne(() => TypeDomain, (typeDomain) => typeDomain.domains)

@@ -9,34 +9,37 @@ template {
 		showIf(domain.attributes.contains, 'oneToOne', 'true')
 	}
 	block(7, 7) {
-		showIf(domain.attributes.contains, 'manyToOne', 'true')
+		showIf(domain.attributes.contains, 'oneToMany', 'true')
 	}
 	block(8, 8) {
+		showIf(domain.attributes.contains, 'manyToOne', 'true')
+	}
+	block(9, 9) {
 		showIf(domain.attributes.contains, 'manyToMany', 'true')
 	}
-	block(11, 11) {
+	block(12, 12) {
 		iterate(domain.attributes, item) {
 			showIf(item.typeDomain.entity.equals, 'true')
 			replace('OtherDomain', item.typeDomain.name)
 		}
 	}
-	block(12, 12) {
+	block(13, 13) {
 		iterate(domain.attributes, item) {
 			showIf(item.typeDomain.enum.equals, 'true')
 			replace('EnumName', item.typeDomain.name)
 		}
 	}
-	block(14, 15) {
+	block(15, 16) {
 		replace('domain_name', domain.name.snakeLowerCase)		
 		replace('DomainName', domain.name)
 	}
-	block(17, 17) {
+	block(18, 18) {
 		replace('domain_name', domain.name.snakeLowerCase)		
 	}
 
-	block(19, 34) {
+	block(20, 35) {
 		iterate(domain.attributes, item) {
-			block(19, 21) {
+			block(20, 22) {
 				showIf(item.basic.equals, 'true')
 				replace('column_name', item.name.snakeLowerCase)
 				replace('attributeName', item.name)
@@ -47,7 +50,7 @@ template {
 				replaceIf('\/\* column_required \*\/', ', nullable:false', item.required.equals, 'true', '')
 				replace('\/\* column_enum \*\/', '')
 			}
-			block(19, 21) {
+			block(20, 22) {
 				showIf(item.enum.equals, 'true')
 				replace('column_name', item.name.snakeLowerCase)
 				replace('attributeName', item.name)
@@ -60,13 +63,13 @@ template {
 					mask(', type: "enum", enum: %s')
 				}
 			}
-			block(22, 25) {
+			block(23, 26) {
 				showIf(item.oneToOne.equals, 'true')
 				replace('attributeName', item.name)
 				replace('OtherDomain', item.type)
 				replace('TypeDomain', item.typeDomain.name)
 			}
-			block(26, 28) {
+			block(27, 29) {
 				showIf(item.oneToMany.equals, 'true')
 				replace('attributeName', item.name)
 				replace('OtherDomain', item.typeDomain.name)
@@ -74,7 +77,7 @@ template {
 				replace('typeDomain', item.typeDomain.name.camelCase)
 				replace('domain', domain.name.camelCase)
 			}
-			block(29, 31) {
+			block(30, 32) {
 				showIf(item.manyToOne, 'true')
 				replace('attributeName', item.name)
 				replace('OtherDomain', item.typeDomain.name)
@@ -84,7 +87,7 @@ template {
 					mask('%ss')
 				}
 			}
-			block(32, 34) {
+			block(33, 35) {
 				showIf(item.manyToMany, 'true')
 				replace('attributeName', item.name)
 				replace('OtherDomain', item.typeDomain.name)
