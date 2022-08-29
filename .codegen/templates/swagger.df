@@ -1,0 +1,78 @@
+template {
+	sourceFile: 'swagger.yml'
+	targetFile: 'swagger-entities.yml'
+	consider: 'singleton'
+    block(3, 4) {
+        replace('Swagger - OpenAPI 3.0', PROJECT_NAME)
+    }
+    block(18, 22) {
+        iterate(context.domains, domain) {
+    	    showIf(domain.enum.equals, 'false')
+            replace('domainName', domain.name.camelCase)
+        }
+    }
+    block(24, 149) {
+        iterate(context.domains, domain) {
+    	    showIf(domain.enum.equals, 'false')
+            replace('domainName', domain.name.camelCase)
+            replace('DomainName', domain.name)
+        }
+    }
+	block(154, 187) {
+		iterate(context.domains, domain) {
+    	    showIf(domain.enum.equals, 'false')
+		    block(154, 156) {
+                replace('DomainName', domain.name)
+		    }
+		    block(157, 185) {
+                iterate(domain.attributes, item) {
+                    block(157, 160) {
+                        showIf(item.type.equals, 'number')
+                        replace('attrInteger', item.name)
+                    }
+                    block(161, 163) {
+                        showIf(item.type.equals, 'string')
+                        replace('attrString', item.name)
+                    }
+                    block(164, 166) {
+                        showIf(item.type.equals, 'boolean')
+                        replace('attrBoolean', item.name)
+                    }
+                    block(167, 169) {
+                        showIf(item.type.equals, 'date')
+                        replace('attrDate', item.name)
+                    }
+                    block(170, 172) {
+                        showIf(item.type.equals, 'datetime')
+                        replace('attrDateTime', item.name)
+                    }
+                    block(173, 177) {
+                        block(173, 176) {
+                            showIf(item.enum.equals, 'true')
+                            replace('attrEnum', item.name)
+                        }
+                        block(177, 177) {
+                            showIf(item.enum.equals, 'true')
+                            iterate(item.typeDomain.attributes, itemEnum) {
+                                replace('enum_value', itemEnum.name)
+                            }
+                        }
+                    }
+                    block(178, 179) {
+                        showIf(item.oneToOne.equals, 'true')
+                        replace('attrEntity', item.name)
+                        replace('Entity', item.name.pascalCase)
+                    }
+                    block(180, 185) {
+                        showIf(item.oneToMany.equals, 'true')
+                        replace('attrList', item.name)
+                        replace('OtherDomainName', item.typeDomain.name)
+                    }
+                }
+		    }
+		    block(186, 187) {
+                replace('domainName', domain.name.camelCase)
+		    }
+		}
+	}
+}
