@@ -1,7 +1,7 @@
 template {
 	sourceFile: 'enum.ts'
 	targetFile: 'src/enum/${domain.name}.ts'
-	consider: 'enum'
+	scope: 'enum'
 	block(1, 1) {
 		replace('DomainName', domain.name)
 	}

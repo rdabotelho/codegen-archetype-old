@@ -1,7 +1,7 @@
 template {
 	sourceFile: 'repository.ts'
 	targetFile: 'src/repository/${domain.name}Repository.ts'
-	consider: 'entity'
+	scope: 'entity'
 	block(3, 3) {
 		replace('DomainName', domain.name)
 	}

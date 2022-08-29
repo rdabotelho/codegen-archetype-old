@@ -1,7 +1,7 @@
 template {
 	sourceFile: 'controller.ts'
 	targetFile: 'src/controller/${domain.name}Controller.ts'
-	consider: 'entity'
+	scope: 'entity'
 	block(2, 5) {
 		replace('DomainName', domain.name)
 	}

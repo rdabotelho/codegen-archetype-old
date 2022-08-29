@@ -1,7 +1,7 @@
 template {
 	sourceFile: 'service.ts'
 	targetFile: 'src/service/${domain.name}Service.ts'
-	consider: 'entity'
+	scope: 'entity'
 	block(1, 2) {
 		replace('DomainName', domain.name)
 	}

@@ -1,7 +1,7 @@
 template {
 	sourceFile: 'swagger.yml'
-	targetFile: 'swagger-entities.yml'
-	consider: 'singleton'
+	targetFile: 'swagger.yml'
+	scope: 'singleton'
     block(3, 4) {
         replace('Swagger - OpenAPI 3.0', PROJECT_NAME)
     }
