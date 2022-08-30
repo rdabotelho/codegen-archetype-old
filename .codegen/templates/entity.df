@@ -1,7 +1,7 @@
 template {
 	sourceFile: 'entity.java'
 	targetFile: '${SOURCE_DIR}/model/${domain.name}.java'
-	consider: 'entity'
+	scope: 'entity'
 	block(1, 1) {
 	    replace('com.example.demo', BASE_PACKAGE)
 	}
@@ -20,7 +20,7 @@ template {
 	}
 	block(15, 16) {
 		iterate(domain.attributes, item) {
-			replace('ATTRIBUTE', item.name.upperCase)
+			replace('ATTRIBUTE', item.name.snakeUpperCase)
 			replace('String', item.type)
 			replace('attribute', item.name)
 		}
