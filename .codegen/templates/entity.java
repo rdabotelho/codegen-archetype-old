@@ -9,7 +9,7 @@ import java.time.*;
 import com.example.demo.domain.enums.*;
 
 @Entity
-@Table(name = "DOMIN_NAME")
+@Table(name = "DOMAIN_NAME")
 public class DomainName implements Serializable {
 
 	@Id
