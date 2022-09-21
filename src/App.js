@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-notifications/lib/notifications.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import EmployeeList from './components/employee/EmployeeList';
-import EmployeeCreate from './components/employee/EmployeeCreate';
-import EmployeeEdit from './components/employee/EmployeeEdit';
+import HelloWorldList from './components/helloWorld/HelloWorldList';
+import HelloWorldCreate from './components/helloWorld/HelloWorldCreate';
+import HelloWorldEdit from './components/helloWorld/HelloWorldEdit';
 
 class App extends Component {
   render() {
@@ -24,9 +24,9 @@ class App extends Component {
                       </div>
                   </nav> <br/>             
                   <Routes>
-                      <Route path='/' element={ <EmployeeList/> } />
-                      <Route path='/create' element={ <EmployeeCreate/> } />
-                      <Route path='/edit/:id' element={ <EmployeeEdit/> } />
+                      <Route path='/' element={ <HelloWorldList/> } />
+                      <Route path='/create' element={ <HelloWorldCreate/> } />
+                      <Route path='/edit/:id' element={ <HelloWorldEdit/> } />
                   </Routes>
               </div>
           </Router>
