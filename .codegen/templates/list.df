@@ -1,0 +1,33 @@
+template {
+	sourceFile: 'list.js'
+	targetFile: 'src/components/${domain.name.camelCase}/${domain.name}List.js'
+	scope: 'entity'
+	block(2, 3) {
+		replace('Employee', domain.name)
+	}	
+	block(5, 5) {
+		replace('Employee', domain.name)
+	}
+	block(7, 10) {
+		replace('employee', domain.name.camelCase)
+	}
+	block(12, 19) {
+		replace('Employee', domain.name)
+		replace('employee', domain.name.camelCase)
+	}
+	block(21, 25) {
+		replace('Employee', domain.name)
+		replace('employee', domain.name.camelCase)
+	}
+	block(30, 30) {
+		replaceIf('Employee', domain.label, domain.label.notEquals, '', domain.name)
+	}
+	block(35, 35) {
+		iterate(domain.attributes, item) {
+			replaceIf('First Name', item.label, item.label.notEquals, '', item.name.pascalCase)
+		}
+	}
+	block(48, 48) {
+		replace('Employee', domain.name)
+	}
+}

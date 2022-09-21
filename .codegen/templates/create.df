@@ -1,0 +1,81 @@
+template {
+	sourceFile: 'create.js'
+	targetFile: 'src/components/${domain.name.camelCase}/${domain.name}Create.js'
+	scope: 'entity'
+	block(2, 2) {
+		replace('Employee', domain.name)
+	}	
+	block(5, 5) {
+		replace('Employee', domain.name)
+	}
+	block(9, 9) {
+		iterate(domain.attributes, item) {
+			replace('FirstName', item.name.pascalCase)
+		}
+	}
+	block(13, 13) {
+		iterate(domain.attributes, item) {
+			replace('firstName', item.name)
+			delimiter('',',','')
+		}
+	}
+	block(16, 21) {
+		iterate(domain.attributes, item) {
+			replace('firstName', item.name)
+			replace('FirstName', item.name.pascalCase)
+		}
+	}
+	block(27, 27) {
+		iterate(domain.attributes, item) {
+			replace('firstName', item.name)
+			delimiter('',',','')
+		}
+	}
+	block(30, 32) {
+		replace('Employee', domain.name)
+	}
+	block(44, 44) {
+		replaceIf('Employee', domain.label, domain.label.notEquals, '', domain.name)
+	}
+	block(46, 54) {
+		iterate(domain.attributes, item) {
+			block(46, 47) {
+				replaceIf('First Name', item.label, item.label.notEquals, '', item.name.pascalCase)
+			}
+			block(48, 48) {
+				showIf(item.type.equals, 'string')
+				replace('firstName', item.name)
+				replace('FirstName', item.name.pascalCase)
+			}
+			block(49, 49) {
+				showIf(item.type.equals, 'number')
+				replace('firstName', item.name)
+				replace('FirstName', item.name.pascalCase)
+			}
+			block(50, 50) {
+				showIf(item.type.equals, 'date')
+				replace('firstName', item.name)
+				replace('FirstName', item.name.pascalCase)
+			}
+			block(51, 53) {
+				block(51, 51) {
+					showIf(item.enum.equals, 'true')
+					replace('firstName', item.name)
+					replace('FirstName', item.name.pascalCase)
+				}
+				block(52, 52) {
+					showIf(item.enum.equals, 'true')
+					iterate(item.typeDomain.attributes, enumValue) {
+						replace('enumValueName', enumValue.name)
+					}
+				}
+				block(53, 53) {
+					showIf(item.enum.equals, 'true')
+				}
+			}
+		}
+	}
+	block(65, 65) {
+		replace('Employee', domain.name)
+	}
+}

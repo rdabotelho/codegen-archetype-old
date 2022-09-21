@@ -1,13 +1,20 @@
 template {
-	sourceFile: 'service.java'
-	targetFile: '${SOURCE_DIR}/service/${domain.name}Service.java'
+	sourceFile: 'service.js'
+	targetFile: 'src/services/${domain.name}Service.js'
 	scope: 'entity'
-	block(1, 4) {
-	    replace('com.example.demo', BASE_PACKAGE)
-		replace('DomainName', domain.name.pascalCase)
+	block(3, 3) {
+		replace('EMPLOYEE', domain.name.snakeUpperCase)
+		replace('employee', domain.name.camelCase)
 	}
-	block(12, 37) {
-		replace('DomainName', domain.name.pascalCase)
-		replace('domainName', domain.name.lowerCase)
+	block(5, 5) {
+		replace('Employee', domain.name)
+	}
+	block(7, 25) {
+		replace('EMPLOYEE', domain.name.snakeUpperCase)
+		replace('employee', domain.name.camelCase)
+		replace('Employee', domain.name)
+	}
+	block(28, 28) {
+		replace('Employee', domain.name)
 	}
 }

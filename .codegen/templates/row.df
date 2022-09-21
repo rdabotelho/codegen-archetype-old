@@ -1,0 +1,22 @@
+template {
+	sourceFile: 'row.js'
+	targetFile: 'src/components/${domain.name.camelCase}/${domain.name}Row.js'
+	scope: 'entity'
+	block(4, 4) {
+		replace('Employee', domain.name)
+	}
+	block(6, 6) {
+		replace('Employee', domain.name)
+	}
+	block(13, 23) {
+		replace('Employee', domain.name)
+	}
+	block(31, 33) {
+		iterate(domain.attributes, item) {
+			replace('firstName', item.name)
+		}
+	}
+	block(47, 47) {
+		replace('Employee', domain.name)
+	}
+}

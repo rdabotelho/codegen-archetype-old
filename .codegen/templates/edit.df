@@ -1,0 +1,91 @@
+template {
+	sourceFile: 'edit.js'
+	targetFile: 'src/components/${domain.name.camelCase}/${domain.name}Edit.js'
+	scope: 'entity'
+	block(2, 2) {
+		replace('Employee', domain.name)
+	}	
+	block(5, 5) {
+		replace('Employee', domain.name)
+	}
+	block(9, 9) {
+		iterate(domain.attributes, item) {
+			replace('FirstName', item.name.pascalCase)
+		}
+	}
+	block(14, 14) {
+		iterate(domain.attributes, item) {
+			replace('firstName', item.name)
+			delimiter('',',','')
+		}
+	}
+	block(17, 22) {
+		iterate(domain.attributes, item) {
+			replace('firstName', item.name)
+			replace('FirstName', item.name.pascalCase)
+		}
+	}
+	block(26, 26) {
+		replace('Employee', domain.name)
+	}
+	block(29, 29) {
+		iterate(domain.attributes, item) {
+			replace('firstName', item.name)
+			delimiter('',',','')
+		}
+	}
+
+	block(42, 42) {
+		iterate(domain.attributes, item) {
+			replace('firstName', item.name)
+			delimiter('',',','')
+		}
+	}
+	block(45, 47) {
+		replace('Employee', domain.name)
+	}
+	block(59, 59) {
+		replaceIf('Employee', domain.label, domain.label.notEquals, '', domain.name)
+	}
+	block(61, 69) {
+		iterate(domain.attributes, item) {
+			block(61, 62) {
+				replaceIf('First Name', item.label, item.label.notEquals, '', item.name.pascalCase)
+			}
+			block(63, 63) {
+				showIf(item.type.equals, 'string')
+				replace('firstName', item.name)
+				replace('FirstName', item.name.pascalCase)
+			}
+			block(64, 64) {
+				showIf(item.type.equals, 'number')
+				replace('firstName', item.name)
+				replace('FirstName', item.name.pascalCase)
+			}
+			block(65, 65) {
+				showIf(item.type.equals, 'date')
+				replace('firstName', item.name)
+				replace('FirstName', item.name.pascalCase)
+			}
+			block(66, 68) {
+				block(66, 66) {
+					showIf(item.enum.equals, 'true')
+					replace('firstName', item.name)
+					replace('FirstName', item.name.pascalCase)
+				}
+				block(67, 67) {
+					showIf(item.enum.equals, 'true')
+					iterate(item.typeDomain.attributes, enumValue) {
+						replace('enumValueName', enumValue.name)
+					}
+				}
+				block(68, 68) {
+					showIf(item.enum.equals, 'true')
+				}
+			}
+		}
+	}
+	block(80, 80) {
+		replace('Employee', domain.name)
+	}
+}
