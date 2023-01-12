@@ -2,7 +2,7 @@ template {
 	sourceFile: 'pom.xml'
 	targetFile: 'pom.xml'
 	block(11, 14) {
-		replace('com.example', BASE_PACKAGE)		
+		replace('com.example', PACKAGE_NAME)		
 		replace(PROJECT_NAME.lowerCase, '')		
 		replace('demo', PROJECT_NAME.lowerCase)		
 	}
