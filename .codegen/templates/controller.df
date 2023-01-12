@@ -1,6 +1,6 @@
 template {
 	sourceFile: 'controller.java'
-	targetFile: '${SOURCE_DIR}/controller/${domain.name}Controller.java'
+	targetFile: 'src/main/java/${PACKAGE_DIR}/controller/${domain.name}Controller.java'
 	scope: 'entity'
 	block(1, 5) {
 	    replace('com.example.demo', BASE_PACKAGE)

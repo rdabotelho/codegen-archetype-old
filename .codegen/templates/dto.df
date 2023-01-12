@@ -1,6 +1,6 @@
 template {
 	sourceFile: 'dto.java'
-	targetFile: '${SOURCE_DIR}/domain/dto/${domain.name}DTO.java'
+	targetFile: 'src/main/java/${PACKAGE_DIR}/domain/dto/${domain.name}DTO.java'
 	scope: 'entity'
 	block(1, 1) {
 	    replace('com.example.demo', BASE_PACKAGE)
