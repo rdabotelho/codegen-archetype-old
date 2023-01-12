@@ -1,0 +1,7 @@
+template {
+	sourceFile: 'DemoApplicationTests.java'
+	targetFile: '${PROJECT_NAME.lowerCase}ApplicationTests.java'
+	block(7, 7) {
+		replace('Demo', PROJECT_NAME)		
+	}
+}
