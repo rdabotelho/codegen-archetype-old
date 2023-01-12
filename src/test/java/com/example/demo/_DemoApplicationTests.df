@@ -1,6 +1,6 @@
 template {
 	sourceFile: 'DemoApplicationTests.java'
-	targetFile: '${PROJECT_NAME.lowerCase}ApplicationTests.java'
+	targetFile: '${PROJECT_NAME.pascalCase}ApplicationTests.java'
 	block(7, 7) {
 		replace('Demo', PROJECT_NAME)		
 	}
