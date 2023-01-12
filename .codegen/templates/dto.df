@@ -3,7 +3,7 @@ template {
 	targetFile: 'src/main/java/${PACKAGE_DIR}/domain/dto/${domain.name}DTO.java'
 	scope: 'entity'
 	block(1, 1) {
-	    replace('com.example.demo', BASE_PACKAGE)
+	    replace('com.example.demo', PACKAGE_NAME)
 	}
 	block(2, 4) {
 	    showIf(domain.attributes.contains, 'list', 'true')

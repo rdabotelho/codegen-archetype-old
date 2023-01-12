@@ -3,7 +3,7 @@ template {
 	targetFile: 'src/main/java/${PACKAGE_DIR}/controller/${domain.name}Controller.java'
 	scope: 'entity'
 	block(1, 5) {
-	    replace('com.example.demo', BASE_PACKAGE)
+	    replace('com.example.demo', PACKAGE_NAME)
 		replace('DomainName', domain.name.pascalCase)
 	}
 	block(22, 22) {

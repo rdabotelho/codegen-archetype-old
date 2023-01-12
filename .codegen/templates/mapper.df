@@ -3,10 +3,10 @@ template {
 	targetFile: 'src/main/java/${PACKAGE_DIR}/domain/mapper/${domain.name}Mapper.java'
 	scope: 'entity'
 	block(1, 1) {
-	    replace('com.example.demo', BASE_PACKAGE)
+	    replace('com.example.demo', PACKAGE_NAME)
 	}
 	block(2, 4) {
-	    replace('com.example.demo', BASE_PACKAGE)
+	    replace('com.example.demo', PACKAGE_NAME)
 		replace('DomainName', domain.name.pascalCase)
 	}
 	block(5, 5) {

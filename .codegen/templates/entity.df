@@ -3,7 +3,7 @@ template {
 	targetFile: 'src/main/java/${PACKAGE_DIR}/domain/model/${domain.name}.java'
 	scope: 'entity'
 	block(1, 1) {
-	    replace('com.example.demo', BASE_PACKAGE)
+	    replace('com.example.demo', PACKAGE_NAME)
 	}
 	block(6, 7) {
 	    showIf(domain.attributes.contains, 'list', 'true')
@@ -13,7 +13,7 @@ template {
 	}
 	block(9, 9) {
 	    showIf(domain.attributes.contains, 'enum', 'true')
-	    replace('com.example.demo', BASE_PACKAGE)
+	    replace('com.example.demo', PACKAGE_NAME)
 	}
 	block(12, 13) {
 		replaceIf('DOMAIN_NAME', domain.table, domain.table.notEquals, '', domain.name.upperCase)
