@@ -1,10 +1,10 @@
 
 template {
 	sourceFile: 'enum.java'
-	targetFile: '${SOURCE_DIR}/enums/${domain.name}.java'
+	targetFile: 'src/main/java/${PACKAGE_DIR}/domain/enums/${domain.name}.java'
 	scope: 'enum'
 	block(1, 1) {
-	    replace('com.example.demo', BASE_PACKAGE)
+	    replace('com.example.demo', PACKAGE_NAME)
 	}
 	block(3, 3) {
 		replace('Enumeration', domain.name.pascalCase)

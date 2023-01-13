@@ -1,0 +1,8 @@
+template {
+	sourceFile: 'pom.xml'
+	targetFile: 'pom.xml'
+	block(11, 14) {
+		replace('com.example', PACKAGE_NAME)		
+		replace('demo', PROJECT_NAME.kebabLowerCase)		
+	}
+}

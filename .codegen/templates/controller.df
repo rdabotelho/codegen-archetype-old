@@ -1,0 +1,33 @@
+template {
+	sourceFile: 'controller.java'
+	targetFile: 'src/main/java/${PACKAGE_DIR}/controller/${domain.name}Controller.java'
+	scope: 'entity'
+	block(1, 5) {
+	    replace('com.example.demo', PACKAGE_NAME)
+		replace('DomainName', domain.name.pascalCase)
+	}
+	block(21, 26) {
+		replace('DomainName', domain.name.pascalCase)
+		replace('domainName', domain.name.lowerCase)
+	}
+	block(28, 40) {
+		replace('DomainName', domain.name.pascalCase)
+		replace('domainName', domain.name.lowerCase)
+	}
+	block(42, 51) {
+		replace('DomainName', domain.name.pascalCase)
+		replace('domainName', domain.name.lowerCase)
+	}
+	block(53, 59) {
+		replace('DomainName', domain.name.pascalCase)
+		replace('domainName', domain.name.lowerCase)
+	}
+	block(61, 67) {
+		replace('DomainName', domain.name.pascalCase)
+		replace('domainName', domain.name.lowerCase)
+	}
+	block(69, 74) {
+		replace('DomainName', domain.name.pascalCase)
+		replace('domainName', domain.name.lowerCase)
+	}
+}

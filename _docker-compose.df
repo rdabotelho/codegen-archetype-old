@@ -1,0 +1,7 @@
+template {
+	sourceFile: 'docker-compose.yaml'
+	targetFile: 'docker-compose.yaml'
+	block(3, 5) {
+		replace('example', PROJECT_NAME.kebabLowerCase)
+	}
+}

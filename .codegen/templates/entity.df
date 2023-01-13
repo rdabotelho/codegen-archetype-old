@@ -1,35 +1,79 @@
 template {
 	sourceFile: 'entity.java'
-	targetFile: '${SOURCE_DIR}/model/${domain.name}.java'
+	targetFile: 'src/main/java/${PACKAGE_DIR}/domain/model/${domain.name}.java'
 	scope: 'entity'
 	block(1, 1) {
-	    replace('com.example.demo', BASE_PACKAGE)
+	    replace('com.example.demo', PACKAGE_NAME)
 	}
-	block(4, 4) {
-	    showIf(domain.attributes.contains, 'type', 'LocalDate')
-	}
-	block(5, 5) {
-	    showIf(domain.attributes.contains, 'enum', 'true')
-	    replace('com.example.demo', BASE_PACKAGE)
+	block(6, 7) {
+	    showIf(domain.attributes.contains, 'list', 'true')
 	}
 	block(8, 8) {
-		replace('ENTITY', domain.name.upperCase)
+	    showIf(domain.attributes.contains, 'type', 'LocalDate')
 	}
 	block(9, 9) {
-		replace('Entity', domain.name.pascalCase)
+	    showIf(domain.attributes.contains, 'enum', 'true')
+	    replace('com.example.demo', PACKAGE_NAME)
 	}
-	block(15, 16) {
-		iterate(domain.attributes, item) {
-			replace('ATTRIBUTE', item.name.snakeUpperCase)
-			replace('String', item.type)
-			replace('attribute', item.name)
-		}
+	block(12, 13) {
+		replaceIf('DOMAIN_NAME', domain.table, domain.table.notEquals, '', domain.name.upperCase)
+		replace('DomainName', domain.name.pascalCase)
 	}
-	block(25, 32) {
+	block(18, 42) {
+	    iterate(domain.attributes, item) {
+	        block(18, 20) {
+                showIf(item.basic.equals, 'true')
+        		replaceIf('ATTRIBUTE', item.column, item.column.notEquals, '', item.name.snakeUpperCase)
+                replace('String', item.type)
+                replace('attribute', item.name)
+	        }
+	        block(21, 24) {
+                showIf(item.enum.equals, 'true')
+        		replaceIf('ATTRIBUTE', item.column, item.column.notEquals, '', item.name.snakeUpperCase)
+                replace('String', item.type)
+                replace('attribute', item.name)
+	        }
+	        block(25, 27) {
+                showIf(item.oneToOne.equals, 'true')
+                replace('String', item.type)
+                replace('attribute', item.name)
+	        }
+	        block(28, 33) {
+                showIf(item.manyToMany.equals, 'true')
+                showIf(item.mappedBy.equals, '')
+                replace('DOMAIN', domain.name.snakeUpperCase)
+                replace('OTHER', item.typeDomain.name.snakeUpperCase)
+                replace('TypeDomainName', item.typeDomain.name)
+                replace('attribute', item.name)
+	        }
+	        block(34, 36) {
+                showIf(item.manyToMany.equals, 'true')
+                showIf(item.mappedBy.notEquals, '')
+                replace('MAPPED_BY', item.mappedBy)
+                replace('attribute', item.name)
+                replace('TypeDomainName', item.typeDomain.name)
+	        }
+	        block(37, 39) {
+                showIf(item.manyToOne.equals, 'true')
+                replace('attribute', item.name)
+                replace('TypeDomainName', item.typeDomain.name)
+	        }
+	        block(40, 42) {
+                showIf(item.oneToMany.equals, 'true')
+                replace('attribute', item.name)
+                replace('TypeDomainName', item.typeDomain.name)
+	        }
+	    }
+	}
+	block(51, 58) {
 		iterate(domain.attributes, item) {
 			replace('String', item.type)
 			replace('Attribute', item.name.pascalCase)
 			replace('attribute', item.name)
 		}
+	}
+	block(59, 78) {
+        replace('DomainName', domain.name)
+        replace('domainName', domain.name.camelCase)
 	}
 }

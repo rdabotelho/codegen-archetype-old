@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: Swagger - OpenAPI 3.0
+  description: Swagger - OpenAPI 3.0
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: http://localhost/api/v1
+tags:
+  - name: domainName
+    description: Everything about your DomainName
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+paths:
+  /domainName:
+    get:
+      tags:
+        - domainName
+      summary: Returns all domainName
+      description: Returns all domainName
+      operationId: getAllDomainName
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DomainName'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DomainName'
+    post:
+      tags:
+        - domainName
+      summary: Create domainName
+      description: Create a new domainName
+      operationId: insertDomainName
+      requestBody:
+        description: Created domainName object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainName'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DomainName'
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainName'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DomainName'
+    put:
+      tags:
+        - domainName
+      summary: Updates domainName
+      description: Update an existing domainName
+      operationId: updateDomainName
+      requestBody:
+        description: Update domainName object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainName'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DomainName'
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainName'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DomainName'
+  /domainName/{id}:
+    get:
+      tags:
+        - domainName
+      summary: Find domainName by ID
+      description: Returns a single domainName
+      operationId: getDomainNameById
+      parameters:
+        - name: id
+          in: path
+          description: ID of domainName to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainName'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DomainName'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: DomainName not found
+    delete:
+      tags:
+        - domainName
+      summary: Delete domainName
+      description: Delete an existing domainName
+      operationId: deleteDomainName
+      parameters:
+        - name: id
+          in: path
+          description: ID of domainName to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainName'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DomainName'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: DomainName not found
+components:
+  schemas:
+    DomainName:
+      type: object
+      properties:
+        attrInteger:
+          type: integer
+          format: int64
+          example: 1000
+        attrString:
+          type: string
+          example: attrString value
+        attrBoolean:
+          type: boolean
+          example: true
+        attrDate:
+          type: string
+          format: date
+        attrDateTime:
+          type: string
+          format: date-time
+        attrEnum:
+          type: string
+          example: enum value
+          enum:
+            - enum_value
+        attrEntity:
+          $ref: '#/components/schemas/Entity'
+        attrList:
+          type: array
+          xml:
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/OtherDomainName'
+      xml:
+        name: domainName

@@ -1,0 +1,10 @@
+template {
+	sourceFile: 'DemoApplicationTests.java'
+	targetFile: 'src/test/java/${PACKAGE_DIR}/${PROJECT_NAME.pascalCase}ApplicationTests.java'
+	block(1, 1) {
+		replace('com.example.demo', PACKAGE_NAME)
+	}
+	block(7, 7) {
+		replace('Demo', PROJECT_NAME)		
+	}
+}
