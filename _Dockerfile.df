@@ -1,7 +1,7 @@
 template {
 	sourceFile: 'Dockerfile'
 	targetFile: 'Dockerfile'
-	block(10, 11) {
+	block(10, 12) {
 		replace('example', PROJECT_NAME.kebabLowerCase)
 	}
 }
